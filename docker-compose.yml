@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   node-app:
     build: ./app
@@ -8,3 +8,14 @@ services:
      - redis
   redis:
     image: redis
+    ports:
+        - "6379:6379"
+
+  azure-vote-front:
+    build: ./azure-vote
+    image: azure-vote-front
+    container_name: azure-vote-front
+    environment:
+      REDIS: redis
+    ports:
+        - "8080:80"
